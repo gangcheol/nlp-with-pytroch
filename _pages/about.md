@@ -7,7 +7,7 @@ permalink: /about/
 **[github](https://github.com/gangcheol/)**.
 
 ## soundcloud
-**[C.I.C](https://soundcloud.com/qfmtzwxyygft/sets/cic-2nd-mixtape-outro)**.
+**[C.I.C](https://soundcloud.com/qfmtzwxyygft/albums)**.
 
 
 
