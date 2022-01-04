@@ -1,0 +1,4144 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Chapter 1. Introduction | Natural Language Processing with PyTorch</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Chapter 1. Introduction" />
+<meta name="author" content="이강철" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="NLP" />
+<meta property="og:description" content="NLP" />
+<link rel="canonical" href="https://gangcheol.github.io/nlp-with-pytroch/python/2021/01/03/Chapter-1.Introduction.html" />
+<meta property="og:url" content="https://gangcheol.github.io/nlp-with-pytroch/python/2021/01/03/Chapter-1.Introduction.html" />
+<meta property="og:site_name" content="Natural Language Processing with PyTorch" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-03T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Chapter 1. Introduction" />
+<script type="application/ld+json">
+{"url":"https://gangcheol.github.io/nlp-with-pytroch/python/2021/01/03/Chapter-1.Introduction.html","@type":"BlogPosting","headline":"Chapter 1. Introduction","dateModified":"2021-01-03T00:00:00-06:00","datePublished":"2021-01-03T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gangcheol.github.io/nlp-with-pytroch/python/2021/01/03/Chapter-1.Introduction.html"},"author":{"@type":"Person","name":"이강철"},"description":"NLP","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/nlp-with-pytroch/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gangcheol.github.io/nlp-with-pytroch/feed.xml" title="Natural Language Processing with PyTorch" /><link rel="shortcut icon" type="image/x-icon" href="/nlp-with-pytroch/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/nlp-with-pytroch/">Natural Language Processing with PyTorch</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/nlp-with-pytroch/about/">About Me</a><a class="page-link" href="/nlp-with-pytroch/search/">Search</a><a class="page-link" href="/nlp-with-pytroch/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Chapter 1. Introduction</h1><p class="page-description">NLP</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-03T00:00:00-06:00" itemprop="datePublished">
+        Jan 3, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">이강철</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/nlp-with-pytroch/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/gangcheol/nlp-with-pytroch/tree/master/_notebooks/2021-01-03-Chapter 1.Introduction.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/gangcheol/nlp-with-pytroch/master?filepath=_notebooks%2F2021-01-03-Chapter+1.Introduction.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/gangcheol/nlp-with-pytroch/blob/master/_notebooks/2021-01-03-Chapter 1.Introduction.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fgangcheol%2Fnlp-with-pytroch%2Fblob%2Fmaster%2F_notebooks%2F2021-01-03-Chapter+1.Introduction.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#NLP">NLP </a></li>
+<li class="toc-entry toc-h1"><a href="#Deep-learning">Deep learning </a></li>
+<li class="toc-entry toc-h1"><a href="#Supervised-Learning">Supervised Learning </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#경사하강법">경사하강법 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#전통적인-경사-하강법">전통적인 경사 하강법 </a></li>
+<li class="toc-entry toc-h3"><a href="#확률적-경사하강법">확률적 경사하강법 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#역전파">역전파 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#원-핫-표현">원-핫 표현 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#사이킷런을-사용하여-원-핫-벡터-또는-이진-표현-만들기">사이킷런을 사용하여 원-핫 벡터 또는 이진 표현 만들기 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#TF-IDF-표현">TF-IDF 표현 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#사이킷런을-사용해-TF-IDF-표현-만들기">사이킷런을 사용해 TF-IDF 표현 만들기 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#파이토치-기초">파이토치 기초 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#텐서-만들기">텐서 만들기 </a></li>
+<li class="toc-entry toc-h2"><a href="#균등분포와-표준정규분포">균등분포와 표준정규분포 </a></li>
+<li class="toc-entry toc-h2"><a href="#동일한-스칼라값으로-채운-텐서를-만들기">동일한 스칼라값으로 채운 텐서를 만들기 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#인-플레이스-메서드">인-플레이스 메서드 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#리스트로-텐서를-만들고-초기화">리스트로 텐서를 만들고 초기화 </a></li>
+<li class="toc-entry toc-h2"><a href="#타입을-초기화-하여-텐서-생성">타입을 초기화 하여 텐서 생성 </a></li>
+<li class="toc-entry toc-h2"><a href="#텐서-연산">텐서 연산 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#덧셈">덧셈 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#인덱싱,-슬라이싱,-연결">인덱싱, 슬라이싱, 연결 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#텐서-슬라이싱과-인덱싱">텐서 슬라이싱과 인덱싱 </a></li>
+<li class="toc-entry toc-h3"><a href="#복잡한-인덱싱,-연속적이지-않은-텐서-인덱스-참조하기">복잡한 인덱싱, 연속적이지 않은 텐서 인덱스 참조하기 </a></li>
+<li class="toc-entry toc-h3"><a href="#텐서-연결">텐서 연결 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#텐서의-선형-대수-계산-:-행렬-곱셈">텐서의 선형 대수 계산 : 행렬 곱셈 </a></li>
+<li class="toc-entry toc-h2"><a href="#텐서와-계산그래프">텐서와 계산그래프 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#연습문제">연습문제 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#1번">1번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#2번">2번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#3번">3번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#4번">4번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#5번">5번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#6번">6번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#7번">7번 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Solution">Solution </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-01-03-Chapter 1.Introduction.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NLP">
+<a class="anchor" href="#NLP" aria-hidden="true"><span class="octicon octicon-link"></span></a>NLP<a class="anchor-link" href="#NLP"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Natrual Language Processing</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>언어학 지식에 상관없이 텍스트를 <strong>"이해"</strong> 하는 통계적인 방법을 사용해 실전 문제를 해결하는 일련의 기술</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>텍스트 마이닝과의 차이 비교가 현재는 거의 무의미 하지만 아래와 같은 관심 중점에 차이가있다</li>
+</ul>
+<p><code>1</code> 텍스트 마이닝 : 텍스트 데이터로 부터 유의미한 정보를 추출</p>
+<p><code>2</code> NLP : 기계가 자연어를 이해할 수 있고 처리할 수 있도록 하는일을 의미한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>여기서 이해라는 것은 주로 텍스트를 계산 가능한 <strong>"표현(representation)"</strong> 으로 변환함으로써 이루어짐</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>표현 : 벡터, 텐서, 그래프, 트리 같이 이산적이거나 연속적으로 조합한 구조이다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>이 책에서는 딥러닝과 NLP을 배운다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Deep-learning">
+<a class="anchor" href="#Deep-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deep learning<a class="anchor-link" href="#Deep-learning"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>개념 : 계산 그래프와 수치 최적화 기술을 사용해 데이터에서 표현을 효과적으로 학습하는 기술</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Supervised-Learning">
+<a class="anchor" href="#Supervised-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supervised Learning<a class="anchor-link" href="#Supervised-Learning"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>목적 : 주어진 데이터 셋에서 손실 함수를 최소화하는 파라미터 값을 고르는 것</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>손실함수 : $L(\hat y,\,y)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="경사하강법">
+<a class="anchor" href="#%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>경사하강법<a class="anchor-link" href="#%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Gradient descent : 식의 근을 찾는 일반적인 방법</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="전통적인-경사-하강법">
+<a class="anchor" href="#%EC%A0%84%ED%86%B5%EC%A0%81%EC%9D%B8-%EA%B2%BD%EC%82%AC-%ED%95%98%EA%B0%95%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>전통적인 경사 하강법<a class="anchor-link" href="#%EC%A0%84%ED%86%B5%EC%A0%81%EC%9D%B8-%EA%B2%BD%EC%82%AC-%ED%95%98%EA%B0%95%EB%B2%95"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>= batct gradient descent</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>오차를 구할 때 전체 데이터 셋을 고려 $\to$ 한 번에 에포크에서 모든 매개변수에 업데이트를 단 한번 수행</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>파라미터의 초깃값을 추측한 다음 목적 함수(= 손실 함수)의 값이 수용할만한 임계점(수렴 조건) 아래로 내려갈 때 까지 파라미터를 반복해서 업데이트를 한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>데이터 셋이 클 경우 메모리 제약 $\to$ 계산 비용이 높아 매우 느림</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="확률적-경사하강법">
+<a class="anchor" href="#%ED%99%95%EB%A5%A0%EC%A0%81-%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>확률적 경사하강법<a class="anchor-link" href="#%ED%99%95%EB%A5%A0%EC%A0%81-%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Stochastic gradient descent(SGD)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>데이터 포인트를 하나 또는 일부 랜덤하게 선택하여 그래디언트를 계산한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>데이터 포인트를 하나 사용하는 방법은 순수 SGD,  두 개 이상 사용하는 방법은 미니배치 SGD 라고 부른다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>순수 SGD : 업데이트에 잡음이 많아 수렴이 매우 느려 실전에서는 거의 사용하지 않음</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="역전파">
+<a class="anchor" href="#%EC%97%AD%EC%A0%84%ED%8C%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>역전파<a class="anchor-link" href="#%EC%97%AD%EC%A0%84%ED%8C%8C"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Backpropagation</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>파라미터를 반복적으로 업데이트 하는 과정</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>단계   = 정방향 계산 (forward pass) + 역방향 계산 (backward pass)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>정방향 계산 : 현재 파라미터값으로 입력을 받아 평가하여 손실함수를 계산</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>역방향 계산 : 손실의 그래이디언트를 사용하여 파라미터를 업데이트 함.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="원-핫-표현">
+<a class="anchor" href="#%EC%9B%90-%ED%95%AB-%ED%91%9C%ED%98%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>원-핫 표현<a class="anchor-link" href="#%EC%9B%90-%ED%95%AB-%ED%91%9C%ED%98%84"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="사이킷런을-사용하여-원-핫-벡터-또는-이진-표현-만들기">
+<a class="anchor" href="#%EC%82%AC%EC%9D%B4%ED%82%B7%EB%9F%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9B%90-%ED%95%AB-%EB%B2%A1%ED%84%B0-%EB%98%90%EB%8A%94-%EC%9D%B4%EC%A7%84-%ED%91%9C%ED%98%84-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>사이킷런을 사용하여 원-핫 벡터 또는 이진 표현 만들기<a class="anchor-link" href="#%EC%82%AC%EC%9D%B4%ED%82%B7%EB%9F%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9B%90-%ED%95%AB-%EB%B2%A1%ED%84%B0-%EB%98%90%EB%8A%94-%EC%9D%B4%EC%A7%84-%ED%91%9C%ED%98%84-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Time flies like an arrow."</span><span class="p">,</span><span class="s2">"Fruit flies like a banana"</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_hot_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">one_hot</span> <span class="o">=</span> <span class="n">one_hot_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">one_hot_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="n">vocab</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['an', 'arrow', 'banana', 'flies', 'fruit', 'like', 'time']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">one_hot</span><span class="p">,</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="n">cbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">,</span>
+           <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Sentence1"</span><span class="p">,</span> <span class="s2">"Setence2"</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TF-IDF-표현">
+<a class="anchor" href="#TF-IDF-%ED%91%9C%ED%98%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>TF-IDF 표현<a class="anchor-link" href="#TF-IDF-%ED%91%9C%ED%98%84"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$TF(w) = Frequency\,\, of \,\,word$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$IDF(w) = \log\frac  {N}{n_w}$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$N : total\, document\quad n_w : number\,of\, documnet\, that\, include\,word $$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$TF$ : $i$번째 문서에서 $j$ 번째 단어의 출현 횟수</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$IDF$ : 역문서 빈도, 단어 $w$가 출현한 역문서 빈도</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>사이킷런의 <code>TfidfVectorizer</code> 클래스에서는 단어를 모두 가상의 문서가 있는 것처럼 로그 안의 분모와 분자에 1을 더해서 분모가 0이 되는 상활을 방지함<ul>
+<li>또한 마지막에 1을 더해 모든 문서에 포함된 단어가 있을 때 IDF 가 0이 되지 않도록함</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$IDF(w) = \log \left( \frac  {N+1}{n_w+1}\right ) + 1$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>만약 특허와 관련된 문서 묶음이 있다고 가정해보자. 그러면 문서 대부분에 ["Claim", "System", "method"]  와 같은 단어가 여러번 반복해서 나온다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>이런 흔한 단어는 사실 특정 특허와 관련한 어떤 정보도 담겨있지 않는다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>반대로 "tetrafluoroethylene"(테트라플루오로에틸랜) 과 같이 희귀한 단어는 자주 나오지 않지만 특허 문서의 특징을 잘나타냄</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$TF(w) \times IDF(w)$이다. 즉 모든 문서에 등장하는 매우 흔한 단어는 TF-IDF 점수가 0이된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>이처럼 아무런 정보없이 무분별하게 여러번 등장하는 단어들에 패널티를 주기위한 기법이다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="사이킷런을-사용해-TF-IDF-표현-만들기">
+<a class="anchor" href="#%EC%82%AC%EC%9D%B4%ED%82%B7%EB%9F%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-TF-IDF-%ED%91%9C%ED%98%84-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>사이킷런을 사용해 TF-IDF 표현 만들기<a class="anchor-link" href="#%EC%82%AC%EC%9D%B4%ED%82%B7%EB%9F%B0%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-TF-IDF-%ED%91%9C%ED%98%84-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf</span> <span class="o">=</span><span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">tfidf</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.49922133, 0.49922133, 0.        , 0.35520009, 0.        ,
+        0.35520009, 0.49922133],
+       [0.        , 0.        , 0.57615236, 0.40993715, 0.57615236,
+        0.40993715, 0.        ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">tfidf</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">xticklabels</span><span class="o">=</span><span class="n">vocab</span><span class="p">,</span><span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s2">"Sentence 1"</span><span class="p">,</span> <span class="s2">"Sentence 2"</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="파이토치-기초">
+<a class="anchor" href="#%ED%8C%8C%EC%9D%B4%ED%86%A0%EC%B9%98-%EA%B8%B0%EC%B4%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>파이토치 기초<a class="anchor-link" href="#%ED%8C%8C%EC%9D%B4%ED%86%A0%EC%B9%98-%EA%B8%B0%EC%B4%88"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>오픈 소스로 씨아노, 카페, 텐서플로와 달리 파이토치는 테이프 기반 자동 미분 방식을 구현한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>위 방식은 계산 그래프를 동적으로 정의하고 실행할 수 있다. 또한 디버깅이 아주 편리하며 복잡한 모델을 손쉽게 만들게 해줌</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>텐서 : 다차원 데이터를 담은 수학객체</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="텐서-만들기">
+<a class="anchor" href="#%ED%85%90%EC%84%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서 만들기<a class="anchor-link" href="#%ED%85%90%EC%84%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>먼저 헬퍼 함수 <code>describe(x)</code>를 정의하여 텐서 타입, 차원, 값 같은 텐서의 속성을 출력</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"타입 : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"크기 : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"값 : </span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n\n</span><span class="s2">================================================</span><span class="se">\n\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>차원을 지정 후 텐서를 랜덤하게 초기화하는 방법</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0.2582, 0.4032, 0.1510],
+        [0.8588, 0.2966, 0.9982]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="균등분포와-표준정규분포">
+<a class="anchor" href="#%EA%B7%A0%EB%93%B1%EB%B6%84%ED%8F%AC%EC%99%80-%ED%91%9C%EC%A4%80%EC%A0%95%EA%B7%9C%EB%B6%84%ED%8F%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>균등분포와 표준정규분포<a class="anchor-link" href="#%EA%B7%A0%EB%93%B1%EB%B6%84%ED%8F%AC%EC%99%80-%ED%91%9C%EC%A4%80%EC%A0%95%EA%B7%9C%EB%B6%84%ED%8F%AC"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1">## 균등 분포</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1">## 표준 정규 분포</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0.6322, 0.4141, 0.1253],
+        [0.5149, 0.2065, 0.5259]])
+ 
+
+================================================
+
+
+타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[-0.5282, -0.1808,  1.0561],
+        [ 0.6534, -0.0688,  1.0356]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="동일한-스칼라값으로-채운-텐서를-만들기">
+<a class="anchor" href="#%EB%8F%99%EC%9D%BC%ED%95%9C-%EC%8A%A4%EC%B9%BC%EB%9D%BC%EA%B0%92%EC%9C%BC%EB%A1%9C-%EC%B1%84%EC%9A%B4-%ED%85%90%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>동일한 스칼라값으로 채운 텐서를 만들기<a class="anchor-link" href="#%EB%8F%99%EC%9D%BC%ED%95%9C-%EC%8A%A4%EC%B9%BC%EB%9D%BC%EA%B0%92%EC%9C%BC%EB%A1%9C-%EC%B1%84%EC%9A%B4-%ED%85%90%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>내장함수로 0또는 1로 채운 텐서 생성</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0., 0., 0.],
+        [0., 0., 0.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1., 1., 1.],
+        [1., 1., 1.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="인-플레이스-메서드">
+<a class="anchor" href="#%EC%9D%B8-%ED%94%8C%EB%A0%88%EC%9D%B4%EC%8A%A4-%EB%A9%94%EC%84%9C%EB%93%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>인-플레이스 메서드<a class="anchor-link" href="#%EC%9D%B8-%ED%94%8C%EB%A0%88%EC%9D%B4%EC%8A%A4-%EB%A9%94%EC%84%9C%EB%93%9C"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>인-플레이스  메서드 : 데이터를 직접 변경하는 것</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>아래와 같이 <code>fill_()</code> 메서드와 비슷하게 랜덤 샘플링에 유용한 인-플레이스 메서드가 잇다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[5., 5., 5.],
+        [5., 5., 5.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[5., 5., 5.],
+        [5., 5., 5.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>새로운 객체를 생성하지 않고 바로 값을 변환하는데 객체 지향적인 관점에서 별로 좋지는 않은 것 같다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[4.4155e-05, 2.1259e+20],
+        [8.1714e+20, 6.7875e-07],
+        [2.5668e-09, 4.1537e-08]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">uniform_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.7345, 0.1133],
+        [0.0873, 0.7492],
+        [0.3604, 0.2273]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.7345, 0.1133],
+        [0.0873, 0.7492],
+        [0.3604, 0.2273]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">normal_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 0.3838, -0.6120],
+        [-1.3810,  0.8169],
+        [-0.6775, -1.2050]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 0.3838, -0.6120],
+        [-1.3810,  0.8169],
+        [-0.6775, -1.2050]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="리스트로-텐서를-만들고-초기화">
+<a class="anchor" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A1%9C-%ED%85%90%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EC%B4%88%EA%B8%B0%ED%99%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>리스트로 텐서를 만들고 초기화<a class="anchor-link" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A1%9C-%ED%85%90%EC%84%9C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EC%B4%88%EA%B8%B0%ED%99%94"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1., 2., 3.],
+        [4., 5., 6.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>위 처럼 값을 리스트나. 넘파이 배열로 전달하여 텐서를 생성하고 초기화가 가능하다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>또한 언제든지 파이토치 텐서를 넘파이 배열로 바꿀 수 있음</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>단 넘파이 배열을 사용하면 텐서 타입이, <code>FloatTensor</code>가 아니라 <code>DoubleTensor</code>가 된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">npy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">npy</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.DoubleTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0.9967, 0.8784, 0.1933],
+        [0.6447, 0.7438, 0.1425]], dtype=torch.float64)
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>넘파이 배열과 파이토치텐서 사이를 변환하는 기능은 넘파이 포맷의 수치데이터를사용하는 <code>래거시</code>(legacy) 라이브러리를 사용할 때 중요하다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="타입을-초기화-하여-텐서-생성">
+<a class="anchor" href="#%ED%83%80%EC%9E%85%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%95%98%EC%97%AC-%ED%85%90%EC%84%9C-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>타입을 초기화 하여 텐서 생성<a class="anchor-link" href="#%ED%83%80%EC%9E%85%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94-%ED%95%98%EC%97%AC-%ED%85%90%EC%84%9C-%EC%83%9D%EC%84%B1"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1., 2., 3.],
+        [4., 5., 6.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1, 2, 3],
+        [4, 5, 6]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1, 2, 3],
+        [4, 5, 6]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[1., 2., 3.],
+        [4., 5., 6.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="텐서-연산">
+<a class="anchor" href="#%ED%85%90%EC%84%9C-%EC%97%B0%EC%82%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서 연산<a class="anchor-link" href="#%ED%85%90%EC%84%9C-%EC%97%B0%EC%82%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="덧셈">
+<a class="anchor" href="#%EB%8D%A7%EC%85%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>덧셈<a class="anchor-link" href="#%EB%8D%A7%EC%85%88"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[ 0.0715, -0.2960, -0.5417],
+        [ 0.3304,  1.5357, -1.1040]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[ 0.1431, -0.5919, -1.0834],
+        [ 0.6609,  3.0715, -2.2080]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([6])
+값 : 
+tensor([0, 1, 2, 3, 4, 5])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>view()</code> 메서드는 동일한 데이터를 공유하는 새로운 텐서를 만든다. <code>data_ptr()</code> 매서드를 사용하면 원본 텐서와 뷰 텐서가 같은 저장 위치를 가리키고 있다는 것을 확인할 수 있다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0, 1, 2],
+        [3, 4, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2251512245888</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x1</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2251512245888</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>0</code> 으로 지정시 colsum 반환, <code>1</code>로 지정시 rowsum을 반환</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([3])
+값 : 
+tensor([3, 5, 7])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2])
+값 : 
+tensor([ 3, 12])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>transpose</code>함수는 두 번째와 세 번째 매개변수로 전달된 차원을 전치한 텐서를 만든다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0, 1, 2],
+        [3, 4, 5]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([3, 2])
+값 : 
+tensor([[0, 3],
+        [1, 4],
+        [2, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="인덱싱,-슬라이싱,-연결">
+<a class="anchor" href="#%EC%9D%B8%EB%8D%B1%EC%8B%B1,-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1,-%EC%97%B0%EA%B2%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>인덱싱, 슬라이싱, 연결<a class="anchor-link" href="#%EC%9D%B8%EB%8D%B1%EC%8B%B1,-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1,-%EC%97%B0%EA%B2%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="텐서-슬라이싱과-인덱싱">
+<a class="anchor" href="#%ED%85%90%EC%84%9C-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1%EA%B3%BC-%EC%9D%B8%EB%8D%B1%EC%8B%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서 슬라이싱과 인덱싱<a class="anchor-link" href="#%ED%85%90%EC%84%9C-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1%EA%B3%BC-%EC%9D%B8%EB%8D%B1%EC%8B%B1"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0, 1, 2],
+        [3, 4, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">1</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([1, 2])
+값 : 
+tensor([[0, 1]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([])
+값 : 
+1
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="복잡한-인덱싱,-연속적이지-않은-텐서-인덱스-참조하기">
+<a class="anchor" href="#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EC%9D%B8%EB%8D%B1%EC%8B%B1,-%EC%97%B0%EC%86%8D%EC%A0%81%EC%9D%B4%EC%A7%80-%EC%95%8A%EC%9D%80-%ED%85%90%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%B0%B8%EC%A1%B0%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>복잡한 인덱싱, 연속적이지 않은 텐서 인덱스 참조하기<a class="anchor-link" href="#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EC%9D%B8%EB%8D%B1%EC%8B%B1,-%EC%97%B0%EC%86%8D%EC%A0%81%EC%9D%B4%EC%A7%80-%EC%95%8A%EC%9D%80-%ED%85%90%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%B0%B8%EC%A1%B0%ED%95%98%EA%B8%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0, 1, 2],
+        [3, 4, 5]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>아래 코드를 해석하면 컬럼차원에서 0,2 번째 컬럼을 반환한다는 뜻이다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 2])
+값 : 
+tensor([[0, 2],
+        [3, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0, 1, 2],
+        [0, 1, 2]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>인덱스가 <code>LongTensor</code> 라는 점에 주목하자. 파이토치 함수를 사용할 때 필수 조건이다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0, 1, 2],
+        [3, 4, 5]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">row_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span> <span class="c1">## 로우나 컬럼이나 같은 표현이다.</span>
+<span class="n">col_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">row_indices</span><span class="p">,</span><span class="n">col_indices</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2])
+값 : 
+tensor([0, 4])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="텐서-연결">
+<a class="anchor" href="#%ED%85%90%EC%84%9C-%EC%97%B0%EA%B2%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서 연결<a class="anchor-link" href="#%ED%85%90%EC%84%9C-%EC%97%B0%EA%B2%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0, 1, 2],
+        [3, 4, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>cat, dim=0 $\to$ r의 cbind</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1">## </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([4, 3])
+값 : 
+tensor([[0, 1, 2],
+        [3, 4, 5],
+        [0, 1, 2],
+        [3, 4, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1">## </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 6])
+값 : 
+tensor([[0, 1, 2, 0, 1, 2],
+        [3, 4, 5, 3, 4, 5]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">]))</span> <span class="c1">## </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.LongTensor
+크기 : torch.Size([2, 2, 3])
+값 : 
+tensor([[[0, 1, 2],
+         [3, 4, 5]],
+
+        [[0, 1, 2],
+         [3, 4, 5]]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="텐서의-선형-대수-계산-:-행렬-곱셈">
+<a class="anchor" href="#%ED%85%90%EC%84%9C%EC%9D%98-%EC%84%A0%ED%98%95-%EB%8C%80%EC%88%98-%EA%B3%84%EC%82%B0-:-%ED%96%89%EB%A0%AC-%EA%B3%B1%EC%85%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서의 선형 대수 계산 : 행렬 곱셈<a class="anchor-link" href="#%ED%85%90%EC%84%9C%EC%9D%98-%EC%84%A0%ED%98%95-%EB%8C%80%EC%88%98-%EA%B3%84%EC%82%B0-:-%ED%96%89%EB%A0%AC-%EA%B3%B1%EC%85%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">6.</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 3])
+값 : 
+tensor([[0., 1., 2.],
+        [3., 4., 5.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1., 1.],
+        [1., 1.],
+        [1., 1.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x2</span> <span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([3, 2])
+값 : 
+tensor([[1., 2.],
+        [1., 2.],
+        [1., 2.]])
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>행렬 곱셈</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 3.,  6.],
+        [12., 24.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>역행렬</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 1.1645, -2.5808],
+        [-0.0280,  3.1795]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>대각합</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(0.8843)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="텐서와-계산그래프">
+<a class="anchor" href="#%ED%85%90%EC%84%9C%EC%99%80-%EA%B3%84%EC%82%B0%EA%B7%B8%EB%9E%98%ED%94%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서와 계산그래프<a class="anchor-link" href="#%ED%85%90%EC%84%9C%EC%99%80-%EA%B3%84%EC%82%B0%EA%B7%B8%EB%9E%98%ED%94%84"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>그래이디언트 연산을 할 수 있는 텐서 만들기</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>requires_grad = True</code>는 그레이디언트 기반 학습에 필요한 손실함수와 텐서의 그레이디언트를 기록하는 부가 연산을 활성화 시킨다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 2])
+값 : 
+tensor([[1., 1.],
+        [1., 1.]], requires_grad=True)
+ 
+
+================================================
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$ y = (x+2)(x+5) +3$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([2, 2])
+값 : 
+tensor([[21., 21.],
+        [21., 21.]], grad_fn=&lt;AddBackward0&gt;)
+ 
+
+================================================
+
+
+True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>타입 : torch.FloatTensor
+크기 : torch.Size([])
+값 : 
+21.0
+ 
+
+================================================
+
+
+False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>파이토치에서 계산 그래프에 있는 노드에 대한 그레이디언트를 <code>.grad</code> 속성으로 참조할 수 있다. 옵티마이저는 <code>.grad</code> 속성을 사용해서 파라미터 값을 업데이트한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="연습문제">
+<a class="anchor" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>연습문제<a class="anchor-link" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1번">
+<a class="anchor" href="#1%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>1번<a class="anchor-link" href="#1%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2D 텐서를 만들고 차원 0 위치에 크기가 1인 차원을 추가하시오.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.2966, 0.4459, 0.0016],
+        [0.2637, 0.7056, 0.2209],
+        [0.2585, 0.7810, 0.2748]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[[0.2966, 0.4459, 0.0016],
+         [0.2637, 0.7056, 0.2209],
+         [0.2585, 0.7810, 0.2748]]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2번">
+<a class="anchor" href="#2%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>2번<a class="anchor-link" href="#2%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이전 텐서에 추가한 차원을 삭제하기</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.2966, 0.4459, 0.0016],
+        [0.2637, 0.7056, 0.2209],
+        [0.2585, 0.7810, 0.2748]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3번">
+<a class="anchor" href="#3%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>3번<a class="anchor-link" href="#3%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>범위가 [3,7) 이고 크기가 $5\times 3$인 램덤판 텐서를 만들기</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">3</span><span class="o">+</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[4.8969, 5.3626, 4.2073],
+        [5.1916, 6.7691, 3.1864],
+        [6.1773, 6.1206, 5.6650],
+        [4.0778, 6.3007, 6.8788],
+        [5.8507, 4.0870, 5.9019]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4번">
+<a class="anchor" href="#4%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>4번<a class="anchor-link" href="#4%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>정규분포를 사용해서 텐서를 만들기</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">normal_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 0.3830, -0.2555, -0.2903],
+        [ 1.0973,  0.3475, -0.5337],
+        [-0.2465,  0.9446, -0.4641]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5번">
+<a class="anchor" href="#5%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>5번<a class="anchor-link" href="#5%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>텐서 torch.Tensor([1,1,1,0,1]) 에서 0이 아닌 원소의 인덱스를 추출하세요.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">as_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([0, 1, 2, 4]),)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>as_tuple</code> : <code>True</code> 로 지정하지 않으면 2차원 텐서를 변환한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6번">
+<a class="anchor" href="#6%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>6번<a class="anchor-link" href="#6%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>크기가 (3,1)인 랜덤한 텐서를 만들고 네 벌을 복사해 쌓으세요</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.1492],
+        [0.1221],
+        [0.5768]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.1492, 0.1492, 0.1492, 0.1492],
+        [0.1221, 0.1221, 0.1221, 0.1221],
+        [0.5768, 0.5768, 0.5768, 0.5768]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7번">
+<a class="anchor" href="#7%EB%B2%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>7번<a class="anchor-link" href="#7%EB%B2%88"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2차원 행렬 개 <strong>( a = torch.rand(3,4,5), b = torch.rand(3,5,4) )</strong> 의 배치 행렬 곱셈을 계산하세요.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solution">
+<a class="anchor" href="#Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution<a class="anchor-link" href="#Solution"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[[0.8432, 0.3043, 0.3210, 0.9431, 0.2673],
+         [0.7349, 0.5522, 0.5258, 0.0104, 0.3234],
+         [0.4519, 0.3940, 0.0187, 0.3106, 0.2780],
+         [0.4799, 0.3480, 0.6322, 0.1634, 0.7024]],
+
+        [[0.7353, 0.2029, 0.0166, 0.0391, 0.7469],
+         [0.0473, 0.0727, 0.1912, 0.2763, 0.8238],
+         [0.8702, 0.6047, 0.2439, 0.3102, 0.2967],
+         [0.5944, 0.9755, 0.8162, 0.3612, 0.4574]],
+
+        [[0.7215, 0.0704, 0.7937, 0.7839, 0.7022],
+         [0.3435, 0.1463, 0.8671, 0.2648, 0.7312],
+         [0.7399, 0.3415, 0.9808, 0.7982, 0.8345],
+         [0.1444, 0.1740, 0.1711, 0.0673, 0.3027]]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[[0.2951, 0.1355, 0.5337, 0.1931],
+         [0.1613, 0.7947, 0.6819, 0.7209],
+         [0.1560, 0.1124, 0.6236, 0.7558],
+         [0.6739, 0.1252, 0.2276, 0.1586],
+         [0.2627, 0.1673, 0.3396, 0.2907]],
+
+        [[0.6307, 0.3764, 0.1830, 0.0020],
+         [0.3913, 0.3344, 0.9843, 0.3801],
+         [0.7788, 0.5737, 0.5411, 0.5289],
+         [0.7318, 0.4864, 0.8927, 0.6358],
+         [0.8435, 0.0820, 0.3751, 0.3977]],
+
+        [[0.5797, 0.1567, 0.3288, 0.7492],
+         [0.0626, 0.7531, 0.8028, 0.4698],
+         [0.3778, 0.8844, 0.9128, 0.1916],
+         [0.9723, 0.2381, 0.1718, 0.3828],
+         [0.0870, 0.5339, 0.6326, 0.3959]]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[[1.0538, 0.5550, 1.1631, 0.8521],
+         [0.4799, 0.6529, 1.2088, 1.0330],
+         [0.4821, 0.4619, 0.6866, 0.5155],
+         [0.5910, 0.5506, 1.1633, 1.0515]],
+
+        [[1.2148, 0.4345, 0.6584, 0.4093],
+         [1.1042, 0.3537, 0.7393, 0.6321],
+         [1.4528, 0.8450, 1.2747, 0.6757],
+         [2.0424, 1.2314, 2.0047, 1.2151]],
+
+        [[1.5457, 1.4296, 1.5972, 1.3038],
+         [0.8569, 1.3843, 1.5300, 0.8831],
+         [1.6695, 1.8762, 2.0778, 1.5386],
+         [0.2510, 0.4826, 0.5464, 0.3683]]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gangcheol/nlp-with-pytroch"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/nlp-with-pytroch/python/2021/01/03/Chapter-1.Introduction.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/nlp-with-pytroch/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/nlp-with-pytroch/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/nlp-with-pytroch/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gangcheol" target="_blank" title="gangcheol"><svg class="svg-icon grey"><use xlink:href="/nlp-with-pytroch/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
