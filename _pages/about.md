@@ -4,10 +4,10 @@ title: About Me
 permalink: /about/
 ---
 ## github
-**[github](https://github.com/gangcheol/)** [^1].
+**[github](https://github.com/gangcheol/)**.
 
 ## soundcloud
-**[C.I.C](https://soundcloud.com/qfmtzwxyygft/sets/cic-2nd-mixtape-outro)** [^1].
+**[C.I.C](https://soundcloud.com/qfmtzwxyygft/sets/cic-2nd-mixtape-outro)**.
 
 
 
