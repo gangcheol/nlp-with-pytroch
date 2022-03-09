@@ -11,15 +11,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="NLP" />
 <meta property="og:description" content="NLP" />
-<link rel="canonical" href="https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95).html" />
-<meta property="og:url" content="https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95).html" />
+<link rel="canonical" href="https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95-n=10).html" />
+<meta property="og:url" content="https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95-n=10).html" />
 <meta property="og:site_name" content="Natural Language Processing with PyTorch" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-03-09T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="KoBert(데이터 증강 이후)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"전북대학교 통계학과 이강철"},"dateModified":"2022-03-09T00:00:00-06:00","datePublished":"2022-03-09T00:00:00-06:00","description":"NLP","headline":"KoBert(데이터 증강 이후)","mainEntityOfPage":{"@type":"WebPage","@id":"https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95).html"},"url":"https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95).html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"전북대학교 통계학과 이강철"},"dateModified":"2022-03-09T00:00:00-06:00","datePublished":"2022-03-09T00:00:00-06:00","description":"NLP","headline":"KoBert(데이터 증강 이후)","mainEntityOfPage":{"@type":"WebPage","@id":"https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95-n=10).html"},"url":"https://gangcheol.github.io/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95-n=10).html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/nlp-with-pytroch/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gangcheol.github.io/nlp-with-pytroch/feed.xml" title="Natural Language Processing with PyTorch" /><link rel="shortcut icon" type="image/x-icon" href="/nlp-with-pytroch/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -116,24 +116,24 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-justify-center">
           <div class="px-2">
 
-    <a href="https://github.com/gangcheol/nlp-with-pytroch/tree/master/_notebooks/2022-03-09-Kobert_모델_학습(데이터증강).ipynb" role="button" target="_blank">
+    <a href="https://github.com/gangcheol/nlp-with-pytroch/tree/master/_notebooks/2022-03-09-Kobert_모델_학습(데이터증강 n=10).ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/gangcheol/nlp-with-pytroch/master?filepath=_notebooks%2F2022-03-09-Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5%28%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95%29.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/gangcheol/nlp-with-pytroch/master?filepath=_notebooks%2F2022-03-09-Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5%28%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95+n%3D10%29.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/gangcheol/nlp-with-pytroch/blob/master/_notebooks/2022-03-09-Kobert_모델_학습(데이터증강).ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/gangcheol/nlp-with-pytroch/blob/master/_notebooks/2022-03-09-Kobert_모델_학습(데이터증강 n=10).ipynb" target="_blank">
         <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
           <div class="px-2">
-  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fgangcheol%2Fnlp-with-pytroch%2Fblob%2Fmaster%2F_notebooks%2F2022-03-09-Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5%28%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95%29.ipynb" target="_blank">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fgangcheol%2Fnlp-with-pytroch%2Fblob%2Fmaster%2F_notebooks%2F2022-03-09-Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5%28%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95+n%3D10%29.ipynb" target="_blank">
       <img class="notebook-badge-image" src="/nlp-with-pytroch/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
   </a>
 </div>
@@ -163,7 +163,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2022-03-09-Kobert_모델_학습(데이터증강).ipynb
+# file to edit: _notebooks/2022-03-09-Kobert_모델_학습(데이터증강 n=10).ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -1865,7 +1865,7 @@ epoch 10 test acc 0.95165625
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95).html" hidden></a>
+</script><a class="u-url" href="/nlp-with-pytroch/python/2022/03/09/Kobert_%EB%AA%A8%EB%8D%B8_%ED%95%99%EC%8A%B5(%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A6%9D%EA%B0%95-n=10).html" hidden></a>
 </article>
 
       </div>
